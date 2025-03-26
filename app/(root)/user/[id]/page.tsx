@@ -5,7 +5,7 @@ import { client } from '@/sanity/lib/client';
 import { AUTHOR_BY_ID_QUERY } from '@/sanity/lib/quires';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import React, { Suspense, use } from 'react'
+import React, { Suspense } from 'react'
 
 const page =  async({params}:{params:Promise<{id:string}>}) => {
     const id  = (await params).id;

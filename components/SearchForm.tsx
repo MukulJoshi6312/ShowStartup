@@ -7,26 +7,26 @@ import { useEffect, useState } from 'react'
 
 const SearchForm = ({query}:{query?:string}) => {
 
-    const[serachBy,setSearchBy] = useState([
-        "Tech Startup",
-        "E-commerce Startup",
-        "Fintech Startup",
-        "HealthTech Startup",
-        "EdTech Startup",
-        "AI/ML Startup",
-        "SaaS Startup",
-        "Social Media Startup",
-        "Blockchain/Crypto Startup"
-    ])
-    const [currentIndex,setCurrenIndex] = useState(0);
+    // const[serachBy,setSearchBy] = useState([
+    //     "Tech Startup",
+    //     "E-commerce Startup",
+    //     "Fintech Startup",
+    //     "HealthTech Startup",
+    //     "EdTech Startup",
+    //     "AI/ML Startup",
+    //     "SaaS Startup",
+    //     "Social Media Startup",
+    //     "Blockchain/Crypto Startup"
+    // ])
+    // const [currentIndex,setCurrenIndex] = useState(0);
 
-    useEffect(()=>{
-        const interval = setInterval(() => {
-            setCurrenIndex((prev)=> (prev+1)%serachBy.length)
-        }, 2000);
+    // useEffect(()=>{
+    //     const interval = setInterval(() => {
+    //         setCurrenIndex((prev)=> (prev+1)%serachBy.length)
+    //     }, 2000);
 
-        return () => clearInterval(interval)
-    })
+    //     return () => clearInterval(interval)
+    // })
   return (
    <Form action="/" scroll={false} className='search-form'>
         <input type="text"

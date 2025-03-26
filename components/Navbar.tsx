@@ -1,6 +1,5 @@
 import { auth, signOut,signIn } from '@/auth'
-import { BadgePlus, BadgePlusIcon, CirclePlus, LogOut } from 'lucide-react'
-import Image from 'next/image'
+import {CirclePlus, LogOut } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
