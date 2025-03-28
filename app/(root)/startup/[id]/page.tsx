@@ -10,13 +10,12 @@ import markdownit from 'markdown-it'
 import { Skeleton } from '@/components/ui/skeleton';
 import View from '@/components/View';
 import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
-import { Indent } from 'lucide-react';
 const md = markdownit();
 const page = async({params}:{params : Promise<{id:string}>}) => {
 
     const id = (await params).id;
 
-    const [post,{select: startupOfTheDay}] =await Promise.all([client.fetch(STARTUP_BY_ID_QUERY,{id}),
+    const [post,{select: startupOfTheDay}] = await Promise.all([client.fetch(STARTUP_BY_ID_QUERY,{id}),
         client.fetch(PLAYLIST_BY_SLUG_QUERY,{ slug:"startup-of-the-day" })
 
     ])
@@ -37,7 +36,7 @@ const page = async({params}:{params : Promise<{id:string}>}) => {
     </section>
     <section className='section_container'>
     <img
-          src={post.image}
+          src={post?.image}
           alt="thumbnail"
           className="w-full h-auto rounded-xl"
         />
@@ -80,9 +79,7 @@ const page = async({params}:{params : Promise<{id:string}>}) => {
         <Suspense fallback={<Skeleton className='bg-zinc-400 h-10 w-24 rounded-lg fixed bottom-3 right-3;'/>}>
             <View id={id}/>
         </Suspense>
-
     </section>
-    
 </>
   )
 }

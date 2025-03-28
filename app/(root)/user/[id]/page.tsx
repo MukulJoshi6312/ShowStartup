@@ -1,4 +1,4 @@
-import { auth } from '@/auth';
+import { auth,signIn } from '@/auth';
 import { StartupCardSkeleton } from '@/components/StartupCard';
 import UserStartup from '@/components/UserStartup';
 import { client } from '@/sanity/lib/client';
@@ -7,13 +7,29 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react'
 
+
 const page =  async({params}:{params:Promise<{id:string}>}) => {
     const id  = (await params).id;
     const session = await auth();
-    console.log(session.id)
     const user = await client.fetch(AUTHOR_BY_ID_QUERY,{id});
-    console.log(user)
-    if(!user) return notFound();
+
+    if (!session?.id) {
+        return (
+          <div className="flex flex-col items-center gap-2 justify-center h-screen">
+            <p className="text-xl font-semibold text-red-500">
+              Please login first to access this page.
+            </p>
+           {
+             <form action={async()=> {
+                "use server"
+                await signIn('github')}}>
+                <button type='submit' className='bg-black hover:bg-black/80 text-white text-2xl px-6 py-1 rounded-full flex justify-center items-center'>Login</button>
+            </form>
+           }
+          </div>
+        );
+      }
+
   return (
    <>
     <section className='profile_container'>

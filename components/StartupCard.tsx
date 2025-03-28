@@ -7,13 +7,18 @@ import { Button } from "./ui/button";
 import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "./ui/skeleton";
 import { auth } from "@/auth";
+import { client } from "@/sanity/lib/client";
+import { DELETE_BY_ID_QUERY } from "@/sanity/lib/quires";
 
 
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+const StartupCard = async ({ post,isUserProfilePage }: { post: StartupTypeCard;isUserProfilePage?: boolean }) => {
   const{_createdAt,description,views,author,title,category,_id,image} = post
-  console.log(author)
+  const session = await auth();
+  const isOwner = session?.id === author?._id; 
+
+  console.log()
   
   return (
     <li className="bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-[0_10px_20px_rgba(0,0,0,0.25)] transition-all duration-500 hover:border-[#EE2B69] hover:shadow-2xl hover:bg-[#FFE8F0]">
@@ -47,6 +52,16 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
             <Link href={`/?query=${category?.toLowerCase()}`}>
             <p className="text-16-medium">{category}</p>
             </Link>
+
+            {/* i want to show this part only user page */}
+
+            {/* {isUserProfilePage && isOwner && (
+                <div>
+               <Button>Edit</Button>
+               <Button>Delete</Button>
+               </div>
+            )  } */}
+
             <Button className="startup-card_btn " asChild>
                 <Link href={`/startup/${_id}`}>
                 Details

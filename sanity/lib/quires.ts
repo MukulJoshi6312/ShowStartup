@@ -106,3 +106,7 @@ export const PLAYLIST_BY_SLUG_QUERY =
     pitch
   }
 }`);
+
+export const DELETE_BY_ID_QUERY = defineQuery(`
+  *[_type == 'startup' && _id == $id][0]
+`);
