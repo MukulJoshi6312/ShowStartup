@@ -13,7 +13,7 @@ import { DELETE_BY_ID_QUERY } from "@/sanity/lib/quires";
 
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard = async ({ post,isUserProfilePage }: { post: StartupTypeCard;isUserProfilePage?: boolean }) => {
+const StartupCard = async ({ post, isUserProfilePage }: { post: StartupTypeCard;isUserProfilePage?: boolean }) => {
   const{_createdAt,description,views,author,title,category,_id,image} = post
   const session = await auth();
   const isOwner = session?.id === author?._id; 
